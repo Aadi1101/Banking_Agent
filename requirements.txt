@@ -1,0 +1,12 @@
+streamlit
+langchain
+langgraph
+ollama
+python-dotenv
+streamlit_authenticator
+beautifulsoup4
+requests
+google-generativeai
+chroma
+mysql-connector-python
+-e .
