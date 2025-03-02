@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+mysql_data/
+.git/
+venv/
+*.egg
+.vscode/
+chroma/
+db/
+.gitignore

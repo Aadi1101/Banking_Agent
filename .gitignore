@@ -2,6 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.vscode/
+data/
+chroma/
+db/
+Dockerfile
 
 # C extensions
 *.so

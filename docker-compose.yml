@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    image: gogetama/banking_agent:latest  # Use the Docker Hub image
+    container_name: streamlit-app
+    restart: always
+    ports:
+      - "8501:8501"
+    networks:
+      - mynetwork
+    depends_on:
+      - my-mysql
+      - my-ollama
+    volumes: #Add any required volumes here.
+      - ./data:/app/data #If your application relies on the data folder, mount it here.
+
+  my-mysql:
+    image: gogetama/mysql:latest
+    container_name: my-mysql
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./data/initdb:/docker-entrypoint-initdb.d
+    networks:
+      - mynetwork
+
+  my-ollama:
+    image: gogetama/ollama:latest
+    container_name: my-ollama
+    restart: always
+    ports:
+      - "11435:11434"
+    volumes:
+      - ./data/models/models:/root/.ollama/models
+    networks:
+      - mynetwork
+
+volumes:
+  mysql_data:
+
+networks:
+  mynetwork:
+    driver: bridge
